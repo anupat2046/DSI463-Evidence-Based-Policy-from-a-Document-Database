@@ -1,0 +1,19 @@
+# Local MongoDB binaries, database files, logs, and scratch work
+/tools/
+/tmp/
+
+# Python environments and caches
+/.venv/
+/venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Local credentials and OS files
+.env
+.env.*
+!.env.example
+Thumbs.db
+.DS_Store
+
+# Assignment data, executed notebooks, PDF briefs, and submission files remain tracked.
