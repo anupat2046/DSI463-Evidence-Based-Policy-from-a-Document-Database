@@ -1,0 +1,13 @@
+# Start a local MongoDB for Assignment 4:   docker compose up -d
+# Then load the data:                       python load_data.py
+# Stop it (data is kept in the volume):     docker compose down
+services:
+  mongo:
+    image: mongo:7.0
+    container_name: dsi463-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+volumes:
+  mongo-data:

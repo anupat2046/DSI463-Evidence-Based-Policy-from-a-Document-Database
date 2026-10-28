@@ -1,0 +1,15 @@
+{
+  "publisher": "National Statistical Office (NSO); source: Department of Provincial Administration (DOPA)",
+  "dataset": "Registered population aged 60+ by sex and province, OS_0405_01_0008_01",
+  "catalog_url": "https://gdcatalog.go.th/dataset/gdpublish-605",
+  "download_url": "https://catalogapi.nso.go.th/api/index?table=OS_0405_01_0008_01&format=json",
+  "accessed": "2026-10-28",
+  "reference_year": 2024,
+  "latest_year_available_in_download": 2025,
+  "selection_reason": "2024 aligns with the synthetic snapshot year; 2025 retained as latest context. Annual registration date differs from June snapshot.",
+  "license_as_catalogued": "Creative Commons Attributions",
+  "raw_rows": 1170,
+  "clean_rows": 7,
+  "sha256_raw": "445d4948044db7920c9a6634918614842e8da3bbfa826de60449301c1d4810fe",
+  "warning": "Synthetic MSO counts cannot measure real provincial coverage, prevalence or entitlement."
+}

@@ -1,0 +1,309 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- <title>ระบบบริหารจัดการและให้บริการ API ข้อมูล ของ สสช.</title> -->
+  <title>ระบบสนับสนุนชุดข้อมูล Unstructured Data สำนักงานสถิติแห่งชาติ</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--===============================================================================================-->
+  <link rel="icon" type="image/png" href="login/images/icons/favicon.ico" />
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="login/vendor/bootstrap/css/bootstrap.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="login/fonts/iconic/css/material-design-iconic-font.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="login/vendor/animate/animate.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="login/vendor/css-hamburgers/hamburgers.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="login/vendor/animsition/css/animsition.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="login/vendor/select2/select2.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="login/vendor/daterangepicker/daterangepicker.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="login/css/util.css">
+  <link rel="stylesheet" type="text/css" href="login/css/main.css">
+  <!--===============================================================================================-->
+  <!-- Modern UI Aesthetic Overrides -->
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+      body, html {
+          font-family: 'Prompt', sans-serif !important;
+          background-color: #f4f7f6;
+          color: #333;
+      }
+      /* Animated Gradient Background */
+      .container-login100 {
+          background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab) !important;
+          background-size: 400% 400% !important;
+          animation: gradientBG 15s ease infinite !important;
+          padding: 50px 15px !important;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+      @keyframes gradientBG {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+      }
+      /* Glassmorphism wrapper */
+      .wrap-login100 {
+          background: rgba(255, 255, 255, 0.95) !important;
+          backdrop-filter: blur(15px);
+          border-radius: 24px !important;
+          box-shadow: 0 20px 50px rgba(0,0,0,0.15) !important;
+          padding: 60px 50px !important;
+          width: 100%;
+          max-width: 500px !important;
+          border: 1px solid rgba(255,255,255,0.4);
+      }
+      /* Title */
+      .login100-form-title {
+          padding-bottom: 40px !important;
+          display: block;
+      }
+      .login100-form-title h1 {
+          font-family: 'Prompt', sans-serif !important;
+          font-size: 1.6rem !important;
+          font-weight: 700 !important;
+          color: #333 !important;
+          line-height: 1.6 !important;
+          text-align: center;
+          background: -webkit-linear-gradient(45deg, #8E54E9, #4776E6);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+      }
+      /* Inputs */
+      .wrap-input100 {
+          margin-bottom: 25px !important;
+          border: none !important;
+          background: transparent !important;
+          border-radius: 30px !important;
+      }
+      .wrap-input100::before, .wrap-input100::after, .focus-input100 {
+          display: none !important;
+      }
+      .input100 {
+          font-family: 'Prompt', sans-serif !important;
+          font-size: 1.05rem !important;
+          height: 60px !important;
+          border-radius: 30px !important;
+          padding: 0 25px !important;
+          border: 2px solid #eef0f3 !important;
+          background-color: #f8f9fc !important;
+          transition: all 0.3s ease !important;
+          width: 100% !important;
+          box-shadow: none !important;
+          outline: none !important;
+          color: #333 !important;
+      }
+      .input100:focus {
+          background-color: #ffffff !important;
+          border-color: #8E54E9 !important;
+          box-shadow: 0 0 0 0.2rem rgba(142, 84, 233, 0.15) !important;
+      }
+      .input100::placeholder {
+          color: #adb5bd !important;
+      }
+      /* Modern Button */
+      .container-login100-form-btn {
+          margin-top: 30px !important;
+          padding-top: 0 !important;
+      }
+      .wrap-login100-form-btn {
+          background: transparent !important;
+          padding: 0 !important;
+          width: 100% !important;
+          display: block !important;
+      }
+      .login100-form-bgbtn {
+          display: none !important;
+      }
+      .login100-form-btn {
+          font-family: 'Prompt', sans-serif !important;
+          font-size: 1.2rem !important;
+          font-weight: 600 !important;
+          height: 60px !important;
+          border-radius: 30px !important;
+          background: linear-gradient(135deg, #4776E6 0%, #8E54E9 100%) !important;
+          color: #fff !important;
+          transition: all 0.3s ease !important;
+          letter-spacing: 1px;
+          width: 100% !important;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0 20px;
+          border: none !important;
+          cursor: pointer;
+      }
+      .login100-form-btn:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 10px 20px rgba(142, 84, 233, 0.3) !important;
+      }
+  </style>
+</head>
+
+<body>
+
+  <div class="limiter">
+    <div class="container-login100">
+      <div class="wrap-login100">
+        <form class="login100-form validate-form" method="POST" action="check_login.php">
+          <span class="login100-form-title p-b-26">
+            <!-- <h1>ระบบบริหารจัดการและให้บริการ API ข้อมูล ของ สสช.</h1> -->
+            <!-- <div class="text-center mb-4">
+                <i class="fa fa-connectdevelop fa-4x" style="background: -webkit-linear-gradient(45deg, #8E54E9, #4776E6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
+            </div> -->
+            <h1>ระบบสนับสนุนชุดข้อมูล<br>Unstructured Data<br>สำนักงานสถิติแห่งชาติ</h1>
+          </span>
+
+          <div class="wrap-input100" data-validate="กรุณากรอกรหัสผู้ใช้">
+            <input class="input100" type="text" name="user_id" id="user_id" placeholder="รหัสผู้ใช้" required>
+          </div>
+
+          <div class="wrap-input100" style="position: relative;" data-validate="กรุณากรอกรหัสผ่าน">
+            <input class="input100" type="password" name="password" id="password" placeholder="รหัสผ่าน" required style="padding-right: 50px;">
+            <i class="fa fa-eye toggle-password" data-target="password" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #888; font-size: 1.2rem; z-index: 10;"></i>
+          </div>
+
+          <!-- <select id="project_id" class="form-control" name="project_id">
+            <option value="">เลือกโครงการ</option>
+                          <option value="BSS">โครงการการสำรวจธุรกิจทางการค้าและธุรกิจทางการบริการ</option>
+                          <option value="ICTES">โครงการสำรวจการมีการใช้เทคโนโลยีสารสนเทศและการสื่อสารในสถานประกอบการ</option>
+                          <option value="ICTH">โครงการสำรวจการมีการใช้เทคโนโลยีสารสนเทศและการสื่อสารในครัวเรือน</option>
+                          <option value="IES">โครงการสำรวจแรงงานนอกระบบ</option>
+                          <option value="LFS">โครงการสำรวจภาวะการทำงานของประชากร</option>
+                          <option value="MICS">โครงการสำรวจสถานการณ์เด็กและสตรีในประเทศไทย</option>
+                          <option value="PHS">โครงการสำรวจโรงพยาบาลและสถานพยาบาลเอกชน</option>
+                          <option value="SES">โครงการสำรวจภาวะเศรษฐกิจและสังคมของครัวเรือน</option>
+                      </select> -->
+
+          <div class="container-login100-form-btn">
+            <div class="wrap-login100-form-btn">
+              <div class="login100-form-bgbtn"></div>
+              <button class="login100-form-btn" id="btn_login">
+                เข้าสู่ระบบ
+              </button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!--===============================================================================================-->
+  <script src="login/vendor/jquery/jquery-3.2.1.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="login/vendor/animsition/js/animsition.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="login/vendor/bootstrap/js/popper.js"></script>
+  <script src="login/vendor/bootstrap/js/bootstrap.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="login/vendor/select2/select2.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="login/vendor/daterangepicker/moment.min.js"></script>
+  <script src="login/vendor/daterangepicker/daterangepicker.js"></script>
+  <!--===============================================================================================-->
+  <script src="login/vendor/countdowntime/countdowntime.js"></script>
+  <!--===============================================================================================-->
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    // ป้องกันการพิมพ์ภาษาไทย หรืออักขระที่ไม่ใช่ภาษาอังกฤษ/ตัวเลข/สัญลักษณ์พื้นฐาน
+    $('#user_id, #password').on('input', function() {
+      this.value = this.value.replace(/[^\x20-\x7E]/g, '');
+    });
+
+    // ระบบกดดูลูกตารหัสผ่าน
+    $('.toggle-password').click(function() {
+      var targetId = $(this).data('target');
+      var input = $('#' + targetId);
+      if (input.attr('type') === 'password') {
+        input.attr('type', 'text');
+        $(this).removeClass('fa-eye').addClass('fa-eye-slash');
+      } else {
+        input.attr('type', 'password');
+        $(this).removeClass('fa-eye-slash').addClass('fa-eye');
+      }
+    });
+
+    $('.login100-form').submit(function(e) {
+      e.preventDefault();
+      var user_id = $("#user_id").val();
+      var password = $("#password").val();
+      var project_id = $("#project_id").val();
+      var btn = $("#btn_login");
+
+      if (!user_id || !password) {
+        Swal.fire({
+          icon: 'warning',
+          title: 'แจ้งเตือน',
+          text: 'กรุณากรอกรหัสผู้ใช้และรหัสผ่าน',
+          confirmButtonText: 'ตกลง',
+          confirmButtonColor: '#4776E6'
+        });
+        return;
+      }
+
+      btn.prop('disabled', true).html('<i class="fa fa-spinner fa-spin"></i> กำลังตรวจสอบ...');
+
+      $.ajax({
+        type: "POST",
+        url: "check_login.php",
+        dataType: "json",
+        data: {
+          user_id: user_id,
+          password: password,
+          project_id: project_id,
+          ajax: 1
+        },
+        success: function(response) {
+          if (response.status === 'success') {
+            Swal.fire({
+              icon: 'success',
+              title: 'เข้าสู่ระบบสำเร็จ',
+              text: 'กำลังพาท่านเข้าสู่ระบบ...',
+              showConfirmButton: false,
+              timer: 1500
+            }).then(() => {
+              window.location.href = response.url;
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'เข้าสู่ระบบไม่สำเร็จ',
+              text: response.message,
+              confirmButtonText: 'ตกลง',
+              confirmButtonColor: '#e73c7e'
+            });
+            btn.prop('disabled', false).html('เข้าสู่ระบบ');
+          }
+        },
+        error: function() {
+            Swal.fire({
+              icon: 'error',
+              title: 'เกิดข้อผิดพลาด',
+              text: 'ไม่สามารถติดต่อเซิร์ฟเวอร์ได้',
+              confirmButtonText: 'ตกลง',
+              confirmButtonColor: '#e73c7e'
+            });
+            btn.prop('disabled', false).html('เข้าสู่ระบบ');
+        }
+      });
+    });
+  });
+</script>
+
+</html>

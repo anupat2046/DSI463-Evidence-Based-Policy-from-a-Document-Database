@@ -1,0 +1,17 @@
+{
+  "runtime": {
+    "mongodb_version": "7.0.45",
+    "endpoint": "('127.0.0.1', 27017)",
+    "platform": "linux"
+  },
+  "docker_container": "dsi463-mongo",
+  "notebook_code_cells": 26,
+  "executed_cells": 26,
+  "error_outputs": 0,
+  "pdf_pages": 2,
+  "target_filter_matches_pdf": true,
+  "v2_exact_equivalence": true,
+  "zip_integrity": "PASS",
+  "packaged_files": 26,
+  "zip_bytes": 3480683
+}

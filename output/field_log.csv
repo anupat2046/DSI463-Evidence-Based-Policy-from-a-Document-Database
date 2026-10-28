@@ -1,0 +1,31 @@
+﻿#,Collection,Field path,Used in query,Why it matters
+1,mso_member,birthdate,"Q1, Q5s",Defines age base; sensitivity changes count
+2,mso_member,province_code,"Q1, Q6",Province-specific numerator and denominator; external join
+3,mso_member,amphur_code,Q1,District-specific rate
+4,mso_member,welf_eldery.code,Q1–Q6,WFEL9 gap; WFEL2 alternative support
+5,mso_household,have_num,Q2,Compare numberless and numbered homes
+6,mso_household,hh_type.code,Q2,Compare living alone and family households
+7,mso_member,occup_status,Q3a,Share currently working
+8,mso_member,pri_occ_income,Q3a,Primary-income mean and recomputed resources
+9,mso_member,sec_occ_income,Q3a,Secondary-income mean and resources
+10,mso_member,subsidy_amount,Q3a,Support amount mean and resources
+11,mso_member,SUM_INCOME,Q3a,Compare reported total and recomputed income
+12,mso_member,SUM_EXPENDITURE,Q3a,Spending pressure
+13,mso_member,have_debt,Q3a,Number with recorded debt
+14,mso_member,debt.type,Q3a,Informal borrowing exposure
+15,mso_member,debt.amount,Q3a,"Monthly repayment burden, not debt stock"
+16,mso_member,saving.amount,Q3a,Recorded savings buffer
+17,mso_member,chronic_disease.code,Q3b,Chronic illness and hypertension
+18,mso_member,med_scheme.code,Q3b,Explicit no-coverage code MS7
+19,mso_member,is_disabled,Q3b,Disability co-occurrence
+20,mso_member,have_pwd_card,Q3b,Disability-card gap conditional on disability
+21,mso_member,welf_others.code,Q3c,State welfare card as other support
+22,mso_member,welf_disability.code,Q3c,Disability allowance co-occurrence
+23,mso_member,nationality,Q3c,Separates verification needs by recorded nationality
+24,mso_member,prob_summary.prob_accessibility.code,"Q4, Q5",PBAC8 case-management recognition
+25,mso_member,prob_summary.prob_accessibility.status,Q4a,Problem response status
+26,mso_member,prob_summary.prob_accessibility.plans.sol_type,Q4b,Plan type
+27,mso_member,prob_summary.prob_accessibility.plans.sol_code,Q4b,Referral route including TR47
+28,mso_member,prob_summary.prob_accessibility.plans.status,Q4b,Plan status
+29,mso_member,prob_summary.prob_accessibility.plans.activities.act_progression,Q4b,Recorded follow-up outcome
+30,mso_member,prob_accessibility.code,Q5,Problem recognition vs case management

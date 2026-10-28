@@ -1,0 +1,8 @@
+﻿province_code,province_name_th,elderly_2024,elderly_latest,year,latest_year,source_url,accessed
+10,กรุงเทพมหานคร,1264604,1305293,2024,2025,https://catalogapi.nso.go.th/api/index?table=OS_0405_01_0008_01&format=json,2026-10-28
+14,พระนครศรีอยุธยา,179184,186511,2024,2025,https://catalogapi.nso.go.th/api/index?table=OS_0405_01_0008_01&format=json,2026-10-28
+30,นครราชสีมา,551419,574051,2024,2025,https://catalogapi.nso.go.th/api/index?table=OS_0405_01_0008_01&format=json,2026-10-28
+40,ขอนแก่น,378450,394314,2024,2025,https://catalogapi.nso.go.th/api/index?table=OS_0405_01_0008_01&format=json,2026-10-28
+50,เชียงใหม่,406871,419480,2024,2025,https://catalogapi.nso.go.th/api/index?table=OS_0405_01_0008_01&format=json,2026-10-28
+58,แม่ฮ่องสอน,40031,41623,2024,2025,https://catalogapi.nso.go.th/api/index?table=OS_0405_01_0008_01&format=json,2026-10-28
+94,ปัตตานี,99590,102536,2024,2025,https://catalogapi.nso.go.th/api/index?table=OS_0405_01_0008_01&format=json,2026-10-28

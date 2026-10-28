@@ -1,0 +1,15 @@
+province_code,province_name_th,province_name_en,region,amphur_code,amphur_name_th,amphur_name_en
+10,กรุงเทพมหานคร,Bangkok,Central,1033,คลองเตย,Khlong Toei
+10,กรุงเทพมหานคร,Bangkok,Central,1003,หนองจอก,Nong Chok
+14,พระนครศรีอยุธยา,Phra Nakhon Si Ayutthaya,Central,1401,พระนครศรีอยุธยา,Phra Nakhon Si Ayutthaya
+14,พระนครศรีอยุธยา,Phra Nakhon Si Ayutthaya,Central,1402,ท่าเรือ,Tha Ruea
+30,นครราชสีมา,Nakhon Ratchasima,Northeast,3001,เมืองนครราชสีมา,Mueang Nakhon Ratchasima
+30,นครราชสีมา,Nakhon Ratchasima,Northeast,3002,ครบุรี,Khon Buri
+40,ขอนแก่น,Khon Kaen,Northeast,4001,เมืองขอนแก่น,Mueang Khon Kaen
+40,ขอนแก่น,Khon Kaen,Northeast,4005,ชุมแพ,Chum Phae
+50,เชียงใหม่,Chiang Mai,North,5001,เมืองเชียงใหม่,Mueang Chiang Mai
+50,เชียงใหม่,Chiang Mai,North,5003,แม่แจ่ม,Mae Chaem
+58,แม่ฮ่องสอน,Mae Hong Son,North,5801,เมืองแม่ฮ่องสอน,Mueang Mae Hong Son
+58,แม่ฮ่องสอน,Mae Hong Son,North,5803,ปาย,Pai
+94,ปัตตานี,Pattani,South,9401,เมืองปัตตานี,Mueang Pattani
+94,ปัตตานี,Pattani,South,9402,โคกโพธิ์,Khok Pho

@@ -1,0 +1,212 @@
+{
+  "name": "Anupat Suttilert",
+  "student_id": "6624650526",
+  "snapshot": "2024-06-30",
+  "runtime": {
+    "mongodb_version": "7.0.45",
+    "endpoint": "('127.0.0.1', 27017)",
+    "platform": "linux"
+  },
+  "elderly": 1461,
+  "gap": 243,
+  "gap_pct": 16.632443531827516,
+  "disabled": 374,
+  "disabled_no_card": 158,
+  "pilot_people": 43,
+  "pilot_households": 40,
+  "budget_baht": 12900,
+  "housing": {
+    "house_number": [
+      {
+        "_id": 0,
+        "elderly": 81,
+        "gap": 37,
+        "gap_pct": 45.67901234567901
+      },
+      {
+        "_id": 1,
+        "elderly": 1378,
+        "gap": 205,
+        "gap_pct": 14.876632801161103
+      }
+    ],
+    "household_type": [
+      {
+        "_id": "HHT1",
+        "elderly": 245,
+        "gap": 63,
+        "gap_pct": 25.71428571428571
+      },
+      {
+        "_id": "HHT3",
+        "elderly": 1010,
+        "gap": 151,
+        "gap_pct": 14.95049504950495
+      },
+      {
+        "_id": "HHT2",
+        "elderly": 204,
+        "gap": 28,
+        "gap_pct": 13.725490196078432
+      }
+    ]
+  },
+  "index_results": [
+    {
+      "run": "before",
+      "winning_stages": "FETCH > IXSCAN",
+      "totalDocsExamined": 715,
+      "totalKeysExamined": 715,
+      "nReturned": 43,
+      "executionTimeMillis": 1
+    },
+    {
+      "run": "after",
+      "winning_stages": "FETCH > IXSCAN",
+      "totalDocsExamined": 136,
+      "totalKeysExamined": 136,
+      "nReturned": 43,
+      "executionTimeMillis": 1
+    }
+  ],
+  "external": [
+    {
+      "province_code": "58",
+      "province": "แม่ฮ่องสอน",
+      "synthetic_elderly": 135,
+      "synthetic_gap": 43,
+      "synthetic_gap_pct": 31.851851851851855,
+      "registered_elderly_2024": 40031,
+      "registered_elderly_latest": 41623,
+      "latest_year": 2025,
+      "registered_growth_pct": 3.976917888636307
+    },
+    {
+      "province_code": "50",
+      "province": "เชียงใหม่",
+      "synthetic_elderly": 199,
+      "synthetic_gap": 43,
+      "synthetic_gap_pct": 21.608040201005025,
+      "registered_elderly_2024": 406871,
+      "registered_elderly_latest": 419480,
+      "latest_year": 2025,
+      "registered_growth_pct": 3.0990166416382587
+    },
+    {
+      "province_code": "30",
+      "province": "นครราชสีมา",
+      "synthetic_elderly": 224,
+      "synthetic_gap": 39,
+      "synthetic_gap_pct": 17.410714285714285,
+      "registered_elderly_2024": 551419,
+      "registered_elderly_latest": 574051,
+      "latest_year": 2025,
+      "registered_growth_pct": 4.104319945449831
+    },
+    {
+      "province_code": "40",
+      "province": "ขอนแก่น",
+      "synthetic_elderly": 234,
+      "synthetic_gap": 34,
+      "synthetic_gap_pct": 14.529914529914532,
+      "registered_elderly_2024": 378450,
+      "registered_elderly_latest": 394314,
+      "latest_year": 2025,
+      "registered_growth_pct": 4.191835116924296
+    },
+    {
+      "province_code": "14",
+      "province": "พระนครศรีอยุธยา",
+      "synthetic_elderly": 187,
+      "synthetic_gap": 26,
+      "synthetic_gap_pct": 13.903743315508022,
+      "registered_elderly_2024": 179184,
+      "registered_elderly_latest": 186511,
+      "latest_year": 2025,
+      "registered_growth_pct": 4.089092776140727
+    },
+    {
+      "province_code": "10",
+      "province": "กรุงเทพมหานคร",
+      "synthetic_elderly": 286,
+      "synthetic_gap": 39,
+      "synthetic_gap_pct": 13.636363636363635,
+      "registered_elderly_2024": 1264604,
+      "registered_elderly_latest": 1305293,
+      "latest_year": 2025,
+      "registered_growth_pct": 3.217528965589228
+    },
+    {
+      "province_code": "94",
+      "province": "ปัตตานี",
+      "synthetic_elderly": 196,
+      "synthetic_gap": 19,
+      "synthetic_gap_pct": 9.693877551020408,
+      "registered_elderly_2024": 99590,
+      "registered_elderly_latest": 102536,
+      "latest_year": 2025,
+      "registered_growth_pct": 2.958128326137162
+    }
+  ],
+  "recording_gap": [
+    {
+      "_id": {
+        "problem_array": false,
+        "case_management": false
+      },
+      "people": 149
+    },
+    {
+      "_id": {
+        "problem_array": true,
+        "case_management": true
+      },
+      "people": 94
+    }
+  ],
+  "statement": "The priority problem is a possible old-age allowance access or recording gap among living, non-removed members aged 60 or over at the assignment's 30 June 2024 reference snapshot. Operationally, the group has no WFEL9 code in welf_eldery. It contains 243 of 1,461 older members (16.6%). Missing welfare records do not establish legal eligibility or prove that payments were never received.\n\nFor fragile households, unreliable income can constrain food, transport and medicine, especially when chronic illness or monthly debt repayments coexist. The analysis therefore compares housing registration and living arrangements, and profiles economic resources, health and other welfare. These associations guide verification priorities rather than establish causes.\n\nAction is timely at the next case-review cycle because uncoded gaps may otherwise remain outside officers' plans. The proposed response is proactive verification and registration support, with referrals where appropriate, followed by a six-month review. An alternative considered was disabled members without a disability card: 158 of 374 (42.2%). Its higher rate warrants attention, but the elderly problem covers more people in this dataset and allows an integrated housing, health and welfare response. This is a reasoned scope choice, not evidence that disability needs matter less. All MSO counts are synthetic and cannot estimate Thailand's actual unmet need.",
+  "age_sensitivity": {
+    "assignment_year_boundaries": [
+      {
+        "_id": null,
+        "elderly": 1461,
+        "gap": 243,
+        "gap_pct": 16.632443531827516
+      }
+    ],
+    "completed_birthday": [
+      {
+        "_id": null,
+        "elderly": 1440,
+        "gap": 223,
+        "gap_pct": 15.48611111111111
+      }
+    ]
+  },
+  "v2_comparison": [
+    {
+      "version": "original Q2",
+      "top_level_stages": 7,
+      "all_stages_including_facet": 13,
+      "lookup_stages": 1,
+      "exact_match": true
+    },
+    {
+      "version": "v2 Q2",
+      "top_level_stages": 3,
+      "all_stages_including_facet": 9,
+      "lookup_stages": 0,
+      "exact_match": true
+    }
+  ],
+  "team_members": [
+    {
+      "name": "Anupat Suttilert",
+      "student_id": "6624650526"
+    },
+    {
+      "name": "Nongnapat Sunontanum",
+      "student_id": "6624650302"
+    }
+  ]
+}
