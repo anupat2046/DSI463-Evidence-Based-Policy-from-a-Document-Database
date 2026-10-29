@@ -2,6 +2,7 @@
 from pathlib import Path
 from html import escape
 import json
+import base64
 from playwright.sync_api import sync_playwright
 import fitz
 
@@ -22,36 +23,46 @@ target = {
 }
 db.mso_member.find(target)'''
 
+font_dir = ROOT/'assets/fonts'
+font_rules = '\n'.join(
+    "@font-face { font-family:'TH Sarabun New'; font-style:normal; font-weight:" + weight + "; src:url(data:font/ttf;base64," + base64.b64encode((font_dir/name).read_bytes()).decode('ascii') + ") format('truetype'); }"
+    for name,weight in [('THSarabunNew.ttf','400'),('THSarabunNewBold.ttf','700')]
+)
 html = '''<!doctype html><html lang="th"><meta charset="utf-8">
 <title>DSI463 | Anupat Suttilert 6624650526 | Nongnapat Sunontanum 6624650302</title>
 <style>
 @page { size:A4; margin:0; }
 * { box-sizing:border-box; }
-body { margin:0; color:#000; font-family:Tahoma,sans-serif; font-size:10.4pt; line-height:1.62; }
+body { margin:0; color:#000; font-family:'TH Sarabun New',sans-serif; font-size:15.5pt; line-height:1.12; }
 .page { width:210mm; height:297mm; padding:14mm 16mm 16mm; position:relative; break-after:page; overflow:hidden; }
 .page:last-child { break-after:auto; }
-.eyebrow { font-size:8.4pt; letter-spacing:.8px; font-weight:bold; color:#000; }
-h1 { font-size:18pt; line-height:1.5; margin:4mm 0 2mm; }
-.subtitle { font-size:11pt; color:#000; margin:0 0 3mm; }
-.author { font-size:8.4pt; color:#000; border-bottom:1px solid #000; padding-bottom:3mm; }
-h2 { margin:5mm 0 2mm; font-size:12pt; color:#000; }
-p { margin:0 0 2.5mm; }
+.eyebrow { font-size:12.5pt; letter-spacing:.8px; font-weight:bold; color:#000; }
+h1 { font-size:24pt; line-height:1.15; margin:4mm 0 2mm; }
+.subtitle { font-size:16pt; color:#000; margin:0 0 3mm; }
+.author { font-size:13pt; color:#000; border-bottom:1px solid #000; padding-bottom:3mm; }
+h2 { margin:5mm 0 2mm; font-size:18pt; color:#000; }
+p { margin:0 0 2.5mm; overflow-wrap:anywhere; }
 .banner { padding:2mm 0; margin:3mm 0; }
 .metrics { display:flex; gap:3mm; margin:3mm 0; }
 .metric { flex:1; padding:2mm; border-top:1px solid #000; }
-.number { font-size:18pt; font-weight:bold; line-height:1.3; color:#000; }
-.caption { font-size:8.4pt; line-height:1.65; margin-top:2mm; }
-table { border-collapse:collapse; width:100%; font-size:9.2pt; margin:2mm 0; }
+.number { font-size:24pt; font-weight:bold; line-height:1.1; color:#000; }
+.caption { font-size:12.5pt; line-height:1.15; margin-top:2mm; }
+table { border-collapse:collapse; width:100%; font-size:14pt; margin:2mm 0; }
 td,th { text-align:left; border-bottom:1px solid #000; padding:2mm 2mm; vertical-align:top; }
 th { font-weight:bold; }
-.small { font-size:8.4pt; line-height:1.65; color:#000; }
-pre { border:1px solid #000; padding:3mm; font:8.1pt/1.45 Consolas,monospace; margin:2mm 0 3mm; white-space:pre-wrap; }
-.footer { position:absolute; bottom:9mm; left:16mm; right:16mm; border-top:1px solid #000; padding-top:2mm; display:flex; justify-content:space-between; font-size:7.8pt; color:#000; }
+.small { font-size:12.5pt; line-height:1.15; color:#000; }
+pre { border:1px solid #000; padding:3mm; font:12.5pt/1.05 'TH Sarabun New',sans-serif; margin:2mm 0 3mm; white-space:pre-wrap; }
+code { font-family:inherit; }
+.footer { position:absolute; bottom:9mm; left:16mm; right:16mm; border-top:1px solid #000; padding-top:2mm; display:flex; justify-content:space-between; font-size:12pt; color:#000; }
 a { color:#000; text-decoration:none; overflow-wrap:anywhere; }
-.source { font-size:7.3pt; line-height:1.55; }
-.page:nth-of-type(2) h2 { margin-top:3mm; }
-.page:nth-of-type(2) .small { font-size:8.2pt; line-height:1.5; }
-.page:nth-of-type(2) pre { padding:2mm 3mm; font-size:8pt; line-height:1.38; }
+.source { font-size:11.5pt; line-height:1.1; }
+.page:nth-of-type(2) { font-size:14.5pt; }
+.page:nth-of-type(2) h2 { font-size:17pt; margin:1.5mm 0 1.5mm; }
+.page:nth-of-type(2) p { margin-bottom:2mm; }
+.page:nth-of-type(2) .small { font-size:12pt; line-height:1.05; }
+.page:nth-of-type(2) pre { padding:2mm 3mm; font-size:12.5pt; line-height:1; }
+.page:nth-of-type(2) table { font-size:13.5pt; }
+.page:nth-of-type(2) td, .page:nth-of-type(2) th { padding:1.5mm 2mm; }
 </style>
 <body><section class="page">
 <div class="eyebrow">DSI463 · ASSIGNMENT 4 · POLICY BRIEF</div>
@@ -110,6 +121,7 @@ NSO, ประชากรอายุ 60 ปีขึ้นไป จากก�
 <div class="footer"><span>DSI463 · 6624650526 / 6624650302</span><span>2 / 2</span></div>
 </section></body></html>'''
 
+html = html.replace('<style>', '<style>\n' + font_rules, 1)
 source = OUT/'A4_6624650526_brief.html'
 source.write_text(html,encoding='utf-8')
 pdf = OUT/'A4_6624650526_brief.pdf'
@@ -118,6 +130,7 @@ with sync_playwright() as p:
     page=browser.new_page()
     page.goto(source.as_uri(),wait_until='load')
     page.evaluate('document.fonts.ready')
+    assert page.evaluate("document.fonts.check('16px \"TH Sarabun New\"')")
     # Verify that content stays above each fixed footer before printing.
     boxes=page.evaluate('''() => [...document.querySelectorAll('.page')].map(p => {
         const footer=p.querySelector('.footer').getBoundingClientRect();
@@ -130,6 +143,9 @@ with sync_playwright() as p:
     browser.close()
 doc=fitz.open(pdf)
 assert len(doc)==2
+embedded_fonts = {font[3] for page in doc for font in page.get_fonts()}
+assert any('Sarabun' in font for font in embedded_fonts), embedded_fonts
+print('Embedded fonts:', sorted(embedded_fonts))
 for i,page in enumerate(doc):
     page.get_pixmap(matrix=fitz.Matrix(1.35,1.35)).save(OUT/f'brief_page_{i+1}.png')
 text='\n'.join(page.get_text() for page in doc)

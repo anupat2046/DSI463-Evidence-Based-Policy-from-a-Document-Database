@@ -3,19 +3,8 @@
   "container_id": "ce80408e713d16351235feb383e3520c1f8062a3a76cddb3b948b44982963e70",
   "image": "mongo:7.0",
   "image_id": "sha256:8bb4442761a63a8dda452744082cdac9644b429807eb977b42324a63cef59ca4",
-  "state": "running",
-  "ports": {
-    "27017/tcp": [
-      {
-        "HostIp": "0.0.0.0",
-        "HostPort": "27017"
-      },
-      {
-        "HostIp": "::",
-        "HostPort": "27017"
-      }
-    ]
-  },
+  "state": "exited",
+  "ports": {},
   "notebook_runtime": {
     "mongodb_version": "7.0.45",
     "endpoint": "('127.0.0.1', 27017)",
