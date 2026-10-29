@@ -35,6 +35,15 @@ assert container['State']['Running'] and container['Config']['Image']=='mongo:7.
 docker_evidence={'container_name':'dsi463-mongo','container_id':container['Id'],'image':container['Config']['Image'],'image_id':container['Image'],'state':container['State']['Status'],'ports':container['NetworkSettings']['Ports'],'notebook_runtime':summary['runtime']}
 (OUT/'docker_runtime.json').write_text(json.dumps(docker_evidence,indent=2),encoding='utf-8')
 assert summary['gap']==243 and summary['elderly']==1461 and summary['pilot_people']==43
+assert len(summary['external_population_context'])==7
+mhs=next(x for x in summary['external_population_context'] if x['province_code']=='58')
+assert mhs['registered_change']==1592 and mhs['population_rank_within_7']==7 and mhs['synthetic_gap_rank_within_7']==1
+assert mhs['universal_verification_baht']==12486900 and mhs['universal_verification_hours']==41623
+assert summary['wfel9_raw_id_match']
+assert {x['_id']:x['people'] for x in summary['wfel9_audit']}=={'missing_field':204,'other_codes_only':39}
+field_log_position=next(i for i,c in enumerate(nb.cells) if c.cell_type=='markdown' and c.source.startswith('### Field log'))
+task4_position=next(i for i,c in enumerate(nb.cells) if c.cell_type=='markdown' and c.source.startswith('## Task 4'))
+assert field_log_position < task4_position
 assert summary['v2_comparison'][0]['exact_match'] and summary['v2_comparison'][1]['exact_match']
 
 # Independently compare the literal PDF filter with the notebook filter (not rendered text).

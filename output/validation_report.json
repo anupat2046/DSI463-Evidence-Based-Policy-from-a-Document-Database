@@ -5,13 +5,13 @@
     "platform": "linux"
   },
   "docker_container": "dsi463-mongo",
-  "notebook_code_cells": 26,
-  "executed_cells": 26,
+  "notebook_code_cells": 28,
+  "executed_cells": 28,
   "error_outputs": 0,
   "pdf_pages": 2,
   "target_filter_matches_pdf": true,
   "v2_exact_equivalence": true,
   "zip_integrity": "PASS",
   "packaged_files": 26,
-  "zip_bytes": 3480683
+  "zip_bytes": 3493662
 }

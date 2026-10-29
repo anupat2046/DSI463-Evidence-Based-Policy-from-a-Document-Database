@@ -24,7 +24,7 @@ md('''
 **Student ID(s):** Anupat Suttilert — 6624650526; Nongnapat Sunontanum — 6624650302  
 **Problem title:** ผู้สูงอายุที่ไม่พบบันทึกเบี้ยยังชีพ: ตรวจสอบสิทธิและเชื่อมต่อการช่วยเหลือเชิงรุก
 
-DSI463 | Tasks 1–5 + Bonus A + Bonus B | Prepared 28 October 2026
+DSI463 | Tasks 1–5 + Bonus A + Bonus B | Updated 29 October 2026
 
 **ข้อมูล MSO เป็นข้อมูลสังเคราะห์ทั้งหมด ตัวเลขจาก MSO ไม่ใช่สถิติจริงของประเทศไทย**
 คำว่า “ช่องว่าง/ไม่พบบันทึก” ในงานนี้หมายถึงไม่พบ WFEL9 ไม่ใช่การยืนยันว่ามีสิทธิตามกฎหมายหรือไม่ได้รับเงินจริง
@@ -116,31 +116,31 @@ md('''
 query('O1. สมาชิกที่ยังมีชีวิตรายจังหวัด', 'จำนวนสมาชิกในแต่ละจังหวัดเป็นเท่าไร?', '''
 o1 = [{'$match': ACTIVE}, {'$group': {'_id': {'code': '$province_code', 'name': '$province_name'}, 'members': {'$sum': 1}}}, {'$sort': {'members': -1}}]
 show('O1', o1)
-''', 'จำนวนสมาชิกต่างกันระหว่างจังหวัด สะท้อนองค์ประกอบชุดข้อมูล จึงต้องเทียบอัตราภายในแต่ละจังหวัดเมื่อวิเคราะห์ปัญหา')
+''', 'กรุงเทพมหานครมีสมาชิกมีชีวิตมากที่สุด 1,353 คน ขณะที่แม่ฮ่องสอนมี 691 คน จากทั้งหมด 7,268 คน ความต่างของขนาดฐานทำให้ต้องเทียบอัตราภายในจังหวัด แทนการจัดลำดับปัญหาจากจำนวนคนเพียงอย่างเดียว')
 query('O2. ครัวเรือนแต่ละประเภท', 'ครัวเรือนที่มีสมาชิกยังมีชีวิตมีกี่หลังในแต่ละประเภท?', '''
 o2 = [{'$match': ACTIVE}] + HH_JOIN + [
     {'$group': {'_id': '$hh_id', 'hh_type': {'$first': {'$ifNull': ['$hh.hh_type.code', 'UNKNOWN']}}}},
     {'$group': {'_id': '$hh_type', 'households': {'$sum': 1}}}, {'$sort': {'_id': 1}}
 ]
 show('O2', o2)
-''', 'นับ hh_id ไม่ซ้ำก่อนรวมประเภท จึงเป็นจำนวนครัวเรือนที่มีสมาชิกมีชีวิต ไม่ใช่จำนวนสมาชิกที่อาศัยในครัวเรือนประเภทนั้น')
+''', 'ครอบครัวเดี่ยว HHT2 พบมากที่สุด 854 จาก 1,952 ครัวเรือน (43.75%) ส่วนครัวเรือนอยู่คนเดียว HHT1 มี 351 ครัวเรือน จึงควรแยกวิเคราะห์อุปสรรคของผู้สูงอายุที่ไม่มีผู้ร่วมบ้านช่วยดำเนินเรื่องสิทธิ')
 query('O3. ช่วงอายุ', 'สมาชิกอยู่ในช่วงอายุใดบ้าง?', '''
 o3 = [{'$match': ACTIVE}, {'$set': {'age': AGE}}, {'$bucket': {'groupBy': '$age', 'boundaries': [0, 15, 30, 45, 60, 70, 80, 120], 'default': 'unknown/outside', 'output': {'members': {'$sum': 1}}}}]
 show('O3', o3)
-''', 'กลุ่มอายุ 60 ปีขึ้นไปเป็นฐานสำหรับวิเคราะห์ช่องว่างเบี้ย โดยช่วง bucket รวมขอบล่างและไม่รวมขอบบน')
+''', 'ผู้สูงอายุ 60 ปีขึ้นไปมี 1,461 จาก 7,268 คน (20.10%) แบ่งเป็น 60–69 ปี 548 คน 70–79 ปี 521 คน และ 80 ปีขึ้นไป 392 คน จึงเป็นกลุ่มขนาดสำคัญในชุดข้อมูลและมีความต้องการความช่วยเหลือหลายช่วงวัย')
 query('O4. ปัญหาที่พบบ่อย', 'สิบโค้ดปัญหาที่บันทึกบ่อยที่สุดคืออะไร?', '''
 PROB_FIELDS = ['prob_accessibility', 'prob_education', 'prob_family', 'prob_health', 'prob_housing', 'prob_occupation', 'prob_violence', 'prob_human_trafficking', 'prob_others']
 o4 = [{'$match': ACTIVE}, {'$project': {'codes': {'$setUnion': [arr(p + '.code') for p in PROB_FIELDS]}}},
       {'$unwind': '$codes'}, {'$group': {'_id': '$codes', 'members': {'$sum': 1}}}, {'$sort': {'members': -1, '_id': 1}}, {'$limit': 10}]
 show('O4', o4)
-''', 'ใช้ setUnion ให้แต่ละโค้ดนับหนึ่งครั้งต่อคน โค้ดที่บันทึกบ่อยจึงบอกภาระเคสที่เห็นในระบบ แต่ไม่ครอบคลุมปัญหาที่ไม่ได้บันทึก')
+''', 'PBOC3 รายได้ต่ำกว่ารายจ่ายพบสูงสุด 1,857 คน ตามด้วย PBOC6 หนี้สิน 1,416 คน และ PBOC7 ไม่มีการออม 1,228 คน จึงควรอ่านช่องว่างสวัสดิการร่วมกับรายได้ ภาระชำระหนี้ และเงินออม โดยแต่ละโค้ดนับคนไม่ซ้ำภายในโค้ด')
 query('O5. สถานะปัญหาทั้งระบบ', 'รายการปัญหาใน prob_summary มีแผนและติดตามแล้วเพียงใด?', '''
 SUMMARY_ARRAY = {'$reduce': {'input': {'$objectToArray': {'$ifNull': ['$prob_summary', {}]}}, 'initialValue': [], 'in': {'$concatArrays': ['$$value', '$$this.v']}}}
 o5 = [{'$match': ACTIVE}, {'$project': {'cases': SUMMARY_ARRAY}}, {'$unwind': '$cases'},
       {'$group': {'_id': '$cases.status', 'problem_entries': {'$sum': 1}}}, {'$sort': {'_id': 1}}]
 overview_status = show('O5', o5)
 display(Markdown(f"สถานะ 0 ไม่มีแผน: **{overview_status.loc[overview_status['_id'].eq(0), 'problem_entries'].sum():,} / {overview_status.problem_entries.sum():,} รายการ**"))
-''', 'หน่วยนับเป็นรายการปัญหา คนหนึ่งมีหลายรายการได้ สถานะ 0 เป็นงานที่ยังไม่มีแผนและไม่ควรนำจำนวนนี้ไปอ้างเป็นจำนวนคน')
+''', 'รายการปัญหาที่ยังไม่มีแผนมี 3,519 จาก 10,606 รายการ (33.18%) สะท้อนงานค้างระดับระบบประมาณหนึ่งในสาม หน่วยนับเป็นรายการปัญหาและคนหนึ่งมีหลายรายการ จึงไม่ใช่จำนวนคนที่ยังไม่ได้รับความช่วยเหลือ')
 
 md('## Task 2 — State the problem\nข้อความภาษาอังกฤษด้านล่างมี 150–250 คำตามข้อกำหนด และเติมตัวเลขจากผลจริงเมื่อจบการรัน')
 code('''
@@ -158,6 +158,22 @@ display(alternative.to_frame('value'))
 ''')
 
 md('## Task 3 — Evidence from the data')
+query('Q0. ตรวจนิยาม WFEL9 และความตรงกันของรายชื่อ', 'ไม่พบ WFEL9 หมายถึงอะไร และวิธีคัดกรองให้รายชื่อเดียวกับข้อมูลต้นฉบับหรือไม่?', '''
+q0 = TARGET + [{'$group': {'_id': {'$switch': {
+ 'branches': [
+   {'case':{'$eq':[{'$type':'$welf_eldery'},'missing']},'then':'missing_field'},
+   {'case':{'$eq':[{'$size':arr('welf_eldery')},0]},'then':'empty_array'}
+ ],'default':'other_codes_only'}},'people':{'$sum':1}}}, {'$sort':{'people':-1}}]
+wfel_audit = show('Q0_WFEL9_definition',q0)
+raw_members = json_util.loads((ROOT/'data/mso_member.json').read_text(encoding='utf-8'))
+raw_elderly = [m for m in raw_members if m.get('status')!='removed' and m.get('vital_status')==1 and SNAPSHOT.year-m['birthdate'].year>=60]
+raw_gap_ids = {m['_id'] for m in raw_elderly if not any(w.get('code')=='WFEL9' for w in m.get('welf_eldery',[]))}
+pipeline_gap_ids = {m['_id'] for m in db.mso_member.aggregate(TARGET+[{'$project':{'_id':1}}])}
+assert raw_gap_ids == pipeline_gap_ids and len(raw_gap_ids)==243
+code_descriptions = sorted({w.get('desc') for m in raw_members for w in m.get('welf_eldery',[]) if w.get('code')=='WFEL9'})
+print('WFEL9 source description:',code_descriptions)
+print('Independent raw JSON and MongoDB: exact same 243 member IDs; 1,218 of 1,461 have WFEL9.')
+''', '243 คนที่ไม่พบ WFEL9 แบ่งเป็นฟิลด์ welf_eldery หาย 204 คน และมีสวัสดิการผู้สูงอายุอื่นแต่ไม่มี WFEL9 อีก 39 คน การคัดกรองจึงถูกต้องตามนิยามช่องว่างบันทึก และไม่ใช้ WFEL2/WFEL6/WFEL7 แทนเบี้ยยังชีพ')
 query('Q1. ขนาดปัญหาและตำแหน่งที่ตั้ง', 'จำนวนและอัตราไม่พบ WFEL9 แตกต่างกันตามจังหวัดและอำเภออย่างไร?', '''
 q1p = ELDERS + rate_group({'code': '$province_code', 'name': '$province_name'})
 q1d = ELDERS + rate_group({'province': '$province_code', 'district': '$amphur_code', 'name': '$amphur_name'})
@@ -229,7 +245,7 @@ q4a = TARGET + [
  {'$project': {'entries': 1, 'people': {'$size': '$ids'}}}, {'$sort': {'_id': 1}}
 ]
 show('Q4a_status', q4a)
-''', 'สถานะ 0 ไม่มีแผน 1 มีแผน 2 ติดตามแล้ว และ 3 ปิดเคส; นับเฉพาะ PBAC8 ของกลุ่มเป้าหมาย เพราะ PBAC8 ครอบคลุมทั้งเบี้ยสูงอายุและเบี้ยพิการและไม่ใช่หลักฐานว่ารับเงินจริง')
+''', 'ใน 94 คนที่ไม่พบ WFEL9 และมี PBAC8 บันทึกใน case management มี 35 คนยังไม่มีแผน (37.23%) อีก 19 คนมีแผนแต่ยังไม่ติดตาม 25 คนติดตามแล้ว และ 15 คนปิดเคส จึงควรเร่งเปิดแผนให้กลุ่ม 35 คนและตรวจผลรับบริการของเคสที่ปิดแล้ว')
 query('Q4b. ประเภทแผนและผลติดตาม', 'แผน PBAC8 ใช้แนวทางใด และบันทึกผลติดตามอย่างไร?', '''
 q4b = TARGET + [
  {'$unwind': '$prob_summary.prob_accessibility'}, {'$match': {'prob_summary.prob_accessibility.code': 'PBAC8'}},
@@ -245,7 +261,16 @@ q4b = TARGET + [
  {'$project': {'rows': 1, 'people': {'$size': '$ids'}}}, {'$sort': {'people': -1}}
 ]
 show('Q4b_plans', q4b)
-''', 'หนึ่งคนมีหลายแผนและกิจกรรมได้ people จึงนับไม่ซ้ำภายในแถว แต่ห้ามบวกข้ามแถวเป็นจำนวนคนทั้งหมด; NO_FOLLOWUP คือไม่มีบันทึกผล ไม่ได้แปลว่าการช่วยเหลือล้มเหลว')
+plan_people_pipeline = TARGET + [
+ {'$unwind':'$prob_summary.prob_accessibility'},
+ {'$match':{'prob_summary.prob_accessibility.code':'PBAC8'}},
+ {'$unwind':'$prob_summary.prob_accessibility.plans'},
+ {'$group':{'_id':'$prob_summary.prob_accessibility.plans.sol_code','ids':{'$addToSet':'$_id'}}},
+ {'$project':{'people':{'$size':'$ids'}}}, {'$sort':{'people':-1}}
+]
+plan_people = show('Q4b_solution_people',plan_people_pipeline)
+display(Markdown('**จำนวนคนไม่ซ้ำต่อรหัสส่งต่อ:** ' + '; '.join(f"{row['_id']}: {row['people']} คน" for row in plan_people.to_dict('records'))))
+''', 'มีผู้ได้รับแผน TR47 เบี้ยยังชีพผู้สูงอายุ 37 คน และ TR44 เบี้ยพิการ 41 คน (คนเดียวมีได้หลายรหัส) จึงต้องตรวจว่าการส่งต่อตรงกับสิทธิที่ขาด; อีก 35 คนยังไม่มีแผน และแถว TR47 ที่ยังไม่มีผลติดตามมี 14 คน จึงต้องติดตามทั้งการเปิดแผนและผลส่งต่อ โดยห้ามบวก people ข้ามแถวเป็นจำนวนคนทั้งหมด')
 query('Q5. ช่องว่างระหว่างข้อเท็จจริงกับการจัดการเคส', 'ผู้ไม่พบ WFEL9 มี PBAC8 ในแบบบันทึกปัญหาและในแผนสอดคล้องกันหรือไม่?', '''
 q5 = TARGET + [
  {'$set': {'has_problem_code': has('prob_accessibility.code', 'PBAC8'), 'has_case_code': has('prob_summary.prob_accessibility.code', 'PBAC8')}},
@@ -261,6 +286,49 @@ q5s = [{'$match': ACTIVE}, {'$set': FLAGS}, {'$facet': {
 age_sensitivity = list(db.mso_member.aggregate(q5s))[0]
 for label, records in age_sensitivity.items(): print(label); display(pd.DataFrame(records))
 ''', 'รายงานหลักใช้สูตรที่โจทย์กำหนดเพื่อให้ตรวจซ้ำได้ แต่การปฏิบัติงานจริงต้องใช้อายุครบวันเกิดและวันตรวจสอบปัจจุบัน; ตารางนี้เปิดเผยผลของทางเลือกดังกล่าว')
+
+md('### Field log — ฟิลด์ที่ใช้เป็นหลักฐานจริง\nไม่นับ status และ vital_status ที่ใช้คัดออก และไม่ใช้ฟิลด์ที่แค่ project เป็นหลักฐาน')
+code('''
+field_rows = [
+ ('mso_member','birthdate','Q1, Q5s','Defines age base; sensitivity changes count'),
+ ('mso_member','province_code','Q1, Q6','Province-specific numerator and denominator; external join'),
+ ('mso_member','amphur_code','Q1','District-specific rate'),
+ ('mso_member','welf_eldery.code','Q1–Q6','WFEL9 gap; WFEL2 alternative support'),
+ ('mso_household','have_num','Q2','Compare numberless and numbered homes'),
+ ('mso_household','hh_type.code','Q2','Compare living alone and family households'),
+ ('mso_member','occup_status','Q3a','Share currently working'),
+ ('mso_member','pri_occ_income','Q3a','Primary-income mean and recomputed resources'),
+ ('mso_member','sec_occ_income','Q3a','Secondary-income mean and resources'),
+ ('mso_member','subsidy_amount','Q3a','Support amount mean and resources'),
+ ('mso_member','SUM_INCOME','Q3a','Compare reported total and recomputed income'),
+ ('mso_member','SUM_EXPENDITURE','Q3a','Spending pressure'),
+ ('mso_member','have_debt','Q3a','Number with recorded debt'),
+ ('mso_member','debt.type','Q3a','Informal borrowing exposure'),
+ ('mso_member','debt.amount','Q3a','Monthly repayment burden, not debt stock'),
+ ('mso_member','saving.amount','Q3a','Recorded savings buffer'),
+ ('mso_member','chronic_disease.code','Q3b','Chronic illness and hypertension'),
+ ('mso_member','med_scheme.code','Q3b','Explicit no-coverage code MS7'),
+ ('mso_member','is_disabled','Q3b','Disability co-occurrence'),
+ ('mso_member','have_pwd_card','Q3b','Disability-card gap conditional on disability'),
+ ('mso_member','welf_others.code','Q3c','State welfare card as other support'),
+ ('mso_member','welf_disability.code','Q3c','Disability allowance co-occurrence'),
+ ('mso_member','nationality','Q3c','Separates verification needs by recorded nationality'),
+ ('mso_member','prob_summary.prob_accessibility.code','Q4, Q5','PBAC8 case-management recognition'),
+ ('mso_member','prob_summary.prob_accessibility.status','Q4a','Problem response status'),
+ ('mso_member','prob_summary.prob_accessibility.plans.sol_type','Q4b','Plan type'),
+ ('mso_member','prob_summary.prob_accessibility.plans.sol_code','Q4b','Referral route including TR47'),
+ ('mso_member','prob_summary.prob_accessibility.plans.status','Q4b','Plan status'),
+ ('mso_member','prob_summary.prob_accessibility.plans.activities.act_progression','Q4b','Recorded follow-up outcome'),
+ ('mso_member','prob_accessibility.code','Q5','Problem recognition vs case management'),
+ ('ext_province_elderly','elderly_2024','Q6, Q6b','Real baseline population size; denominator for registered population growth only'),
+ ('ext_province_elderly','elderly_latest','Q6, Q6b','Real latest population size and increase; scale context, not synthetic coverage')
+]
+field_log = pd.DataFrame(field_rows, columns=['Collection','Field path','Used in query','Why it matters'])
+field_log.insert(0, '#', range(1,len(field_log)+1))
+display(field_log)
+assert len(field_log) >= 15 and field_log.Collection.nunique() >= 2
+print(f'{len(field_log)} distinct evidence fields; member sections: identity/location, economy, health, welfare, problems/case management.')
+''')
 
 md('''
 ## Task 4 — Combine external data
@@ -297,45 +365,41 @@ assert len(external_context) == 7 and external_context.registered_elderly_2024.n
 display(Markdown('**การตรวจ join:** ครบ 7/7 จังหวัด ไม่มีรหัสตกหล่น'))
 ''', 'ข้อมูลภายนอกแสดงขนาดประชากรผู้สูงอายุจริงซึ่งฐานสังเคราะห์บอกไม่ได้: จังหวัดที่มีอัตราช่องว่างสูงไม่จำเป็นต้องมีประชากรมาก จึงเลือกพื้นที่นำร่องจากอัตราภายในตัวอย่างได้ แต่การขยายกำลังคนต้องสำรวจฐานจริงก่อน ห้ามนำ synthetic_gap_pct ไปคูณประชากรจริงเพื่ออ้างจำนวนตกหล่นทั้งจังหวัด')
 
-md('### Field log — ฟิลด์ที่ใช้เป็นหลักฐานจริง\nไม่นับ status และ vital_status ที่ใช้คัดออก และไม่ใช้ฟิลด์ที่แค่ project เป็นหลักฐาน')
-code('''
-field_rows = [
- ('mso_member','birthdate','Q1, Q5s','Defines age base; sensitivity changes count'),
- ('mso_member','province_code','Q1, Q6','Province-specific numerator and denominator; external join'),
- ('mso_member','amphur_code','Q1','District-specific rate'),
- ('mso_member','welf_eldery.code','Q1–Q6','WFEL9 gap; WFEL2 alternative support'),
- ('mso_household','have_num','Q2','Compare numberless and numbered homes'),
- ('mso_household','hh_type.code','Q2','Compare living alone and family households'),
- ('mso_member','occup_status','Q3a','Share currently working'),
- ('mso_member','pri_occ_income','Q3a','Primary-income mean and recomputed resources'),
- ('mso_member','sec_occ_income','Q3a','Secondary-income mean and resources'),
- ('mso_member','subsidy_amount','Q3a','Support amount mean and resources'),
- ('mso_member','SUM_INCOME','Q3a','Compare reported total and recomputed income'),
- ('mso_member','SUM_EXPENDITURE','Q3a','Spending pressure'),
- ('mso_member','have_debt','Q3a','Number with recorded debt'),
- ('mso_member','debt.type','Q3a','Informal borrowing exposure'),
- ('mso_member','debt.amount','Q3a','Monthly repayment burden, not debt stock'),
- ('mso_member','saving.amount','Q3a','Recorded savings buffer'),
- ('mso_member','chronic_disease.code','Q3b','Chronic illness and hypertension'),
- ('mso_member','med_scheme.code','Q3b','Explicit no-coverage code MS7'),
- ('mso_member','is_disabled','Q3b','Disability co-occurrence'),
- ('mso_member','have_pwd_card','Q3b','Disability-card gap conditional on disability'),
- ('mso_member','welf_others.code','Q3c','State welfare card as other support'),
- ('mso_member','welf_disability.code','Q3c','Disability allowance co-occurrence'),
- ('mso_member','nationality','Q3c','Separates verification needs by recorded nationality'),
- ('mso_member','prob_summary.prob_accessibility.code','Q4, Q5','PBAC8 case-management recognition'),
- ('mso_member','prob_summary.prob_accessibility.status','Q4a','Problem response status'),
- ('mso_member','prob_summary.prob_accessibility.plans.sol_type','Q4b','Plan type'),
- ('mso_member','prob_summary.prob_accessibility.plans.sol_code','Q4b','Referral route including TR47'),
- ('mso_member','prob_summary.prob_accessibility.plans.status','Q4b','Plan status'),
- ('mso_member','prob_summary.prob_accessibility.plans.activities.act_progression','Q4b','Recorded follow-up outcome'),
- ('mso_member','prob_accessibility.code','Q5','Problem recognition vs case management')
+query('Q6b. ขนาดประชากรจริงและการเปลี่ยนแปลงเพื่อวางแผนขยายงาน', 'จังหวัดนำร่องมีขนาดประชากรสูงอายุและการเปลี่ยนแปลงปี 2024–2025 เท่าไร เมื่ออ่านควบคู่กับอัตราช่องว่างในชุดสังเคราะห์?', '''
+# Keep the real-population calculation wholly within the NSO/DOPA source.
+# Never subtract synthetic members from registered people or infer real coverage.
+q6b = ELDERS + rate_group('$province_code') + [
+ {'$lookup': {'from':'ext_province_elderly', 'localField':'_id', 'foreignField':'province_code', 'as':'ext'}},
+ {'$unwind': {'path':'$ext', 'preserveNullAndEmptyArrays':True}},
+ {'$project': {'_id':0, 'province_code':'$_id', 'province':'$ext.province_name_th',
+   'synthetic_gap':'$gap', 'synthetic_gap_pct':'$gap_pct',
+   'registered_2024':'$ext.elderly_2024', 'registered_2025':'$ext.elderly_latest',
+   'latest_year':'$ext.latest_year',
+   'registered_change':{'$subtract':['$ext.elderly_latest','$ext.elderly_2024']},
+   'universal_verification_hours': '$ext.elderly_latest',
+   'universal_verification_baht': {'$multiply':['$ext.elderly_latest',300]},
+   'registered_growth_pct':pct({'$subtract':['$ext.elderly_latest','$ext.elderly_2024']},'$ext.elderly_2024')}},
+ {'$setWindowFields': {'sortBy':{'registered_2025':-1}, 'output':{'population_rank_within_7':{'$rank':{}}}}},
+ {'$setWindowFields': {'sortBy':{'synthetic_gap_pct':-1}, 'output':{'synthetic_gap_rank_within_7':{'$rank':{}}}}},
+ {'$sort': {'synthetic_gap_pct':-1}}
 ]
-field_log = pd.DataFrame(field_rows, columns=['Collection','Field path','Used in query','Why it matters'])
-field_log.insert(0, '#', range(1,len(field_log)+1))
-display(field_log)
-assert len(field_log) >= 15 and field_log.Collection.nunique() >= 2
-print('30 distinct evidence fields; member sections: identity/location, economy, health, welfare, problems/case management.')
+population_context = show('Q6b_population_context',q6b)
+assert len(population_context)==7
+assert population_context[['registered_2024','registered_2025']].notna().all().all()
+assert population_context.latest_year.eq(2025).all()
+mhs = population_context.set_index('province_code').loc['58']
+display(Markdown(
+ f"แม่ฮ่องสอน: ผู้สูงอายุจากทะเบียนจริง **{int(mhs.registered_2024):,} → {int(mhs.registered_2025):,} คน** "
+ f"เพิ่ม **{int(mhs.registered_change):,} คน ({mhs.registered_growth_pct:.2f}%)**; "
+ f"ขนาดประชากรปี 2025 อันดับ **{int(mhs.population_rank_within_7)}/7** "
+ f"แต่อัตราช่องว่างในชุดสังเคราะห์อันดับ **{int(mhs.synthetic_gap_rank_within_7)}/7**"))
+display(Markdown(f"**ผลต่อขอบเขตนโยบาย:** หากออกแบบให้ตรวจผู้สูงอายุจากทะเบียนแม่ฮ่องสอนปี 2025 ทุกคน ภายใต้สมมติฐานเดียวกันคือ 1 ชั่วโมงและ 300 บาทต่อคน จะต้องใช้ **{int(mhs.universal_verification_hours):,} ชั่วโมง / {int(mhs.universal_verification_baht):,} บาท** จึงกำหนดโครงการเป็นการนำร่องตรวจรายชื่อ 43 คนจากชุดข้อมูล (43 ชั่วโมง / 12,900 บาท) ก่อนออกแบบการขยายงานจากทะเบียนจริง"))
+''', 'ข้อมูลภายนอกทำให้จำกัดข้อเสนอเป็นนำร่องแทนการตรวจผู้สูงอายุทั้งจังหวัด: การตรวจทะเบียนปี 2025 ครบ 41,623 คนต้องใช้ 41,623 ชั่วโมงและ 12,486,900 บาทตามสมมติฐาน ขณะที่การนำร่องใช้ 43 ชั่วโมงและ 12,900 บาท นี่เป็นการเปรียบเทียบขอบเขตงานสองสถานการณ์ ไม่ใช่การประมาณความชุก จำนวนผู้ตกหล่น หรือความครอบคลุมจริง และงบขยายงานต้องยืนยันจากข้อมูลปฏิบัติงานเพิ่ม')
+md('''
+**ขอบเขตการตีความ:** อัตรา `synthetic records / real population` สาธิตการ join ได้ แต่ไม่วัดความครอบคลุมจริงหรือใช้จัดอันดับการเข้าถึงของเจ้าหน้าที่
+จึงไม่คำนวณ `real population - synthetic records` เป็นคนที่ไม่อยู่ใน logbook และไม่ใช้ correlation ระหว่างอัตราส่วนผสมนี้กับอัตราช่องว่างเพื่อสรุปสาเหตุ
+43 คนเป็นจำนวนที่ query พบในข้อมูลสังเคราะห์ ไม่ใช่จำนวนขั้นต่ำของผู้สูงอายุที่ตกหล่นจริงในแม่ฮ่องสอน
+ข้อเสนอค้นหาเชิงรุกนอกระบบทำได้ในฐานะแผนงานที่ต้องตรวจสอบเพิ่มเติม ไม่ใช่ข้อค้นพบว่าประชากรที่เหลือไม่เคยถูกคัดกรอง
 ''')
 
 md('''
@@ -480,7 +544,8 @@ list(db.mso_member.aggregate(migration))
 db.mso_member_v2.create_index([('province_code',1),('vital_status',1),('elderly_at_snapshot',1),('has_recorded_allowance',1)], name='v2_target_scalar')
 db.mso_member_v2.create_index('problem_codes', name='v2_problem_codes_multikey')
 print('v2 documents:', db.mso_member_v2.count_documents({}))
-sample = db.mso_member_v2.find_one({'province_code':'58','elderly_at_snapshot':True,'has_recorded_allowance':False})
+sample = db.mso_member_v2.find_one({**ACTIVE,'province_code':'58','elderly_at_snapshot':True,'has_recorded_allowance':False,'household_snapshot.status':{'$ne':'removed'}})
+assert sample['vital_status']==1 and sample['status']!='removed'
 # Actual migrated document; print concise sample with arrays retained.
 print(json_util.dumps(sample, ensure_ascii=False, indent=2))
 ''')
@@ -531,7 +596,8 @@ summary = {
  'disabled':int(alternative.disabled),'disabled_no_card':int(alternative.no_card),
  'pilot_people':pilot_n,'pilot_households':pilot_hh,'budget_baht':pilot_n*300,
  'housing':housing,'index_results':index_results.to_dict('records'),
- 'external':external_context.to_dict('records'),
+ 'external':external_context.to_dict('records'),'external_population_context':population_context.to_dict('records'),
+ 'wfel9_audit':wfel_audit.to_dict('records'),'wfel9_raw_id_match':raw_gap_ids==pipeline_gap_ids,
  'recording_gap':gap_recording.to_dict('records'), 'statement':statement,
  'age_sensitivity':age_sensitivity, 'v2_comparison':comparison.to_dict('records')
 }

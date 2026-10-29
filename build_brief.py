@@ -27,27 +27,27 @@ html = '''<!doctype html><html lang="th"><meta charset="utf-8">
 <style>
 @page { size:A4; margin:0; }
 * { box-sizing:border-box; }
-body { margin:0; color:#18333b; font-family:Tahoma,sans-serif; font-size:10.4pt; line-height:1.62; }
+body { margin:0; color:#000; font-family:Tahoma,sans-serif; font-size:10.4pt; line-height:1.62; }
 .page { width:210mm; height:297mm; padding:14mm 16mm 16mm; position:relative; break-after:page; overflow:hidden; }
 .page:last-child { break-after:auto; }
-.eyebrow { font-size:8.4pt; letter-spacing:.8px; font-weight:bold; color:#357b79; }
-h1 { font-size:25pt; line-height:1.45; margin:5mm 0 2mm; letter-spacing:-.3px; }
-.subtitle { font-size:12pt; color:#42636a; margin:0 0 3mm; }
-.author { font-size:8.4pt; color:#65777b; border-bottom:1px solid #ccd9d8; padding-bottom:3mm; }
-h2 { margin:5mm 0 2mm; font-size:12pt; color:#176461; }
+.eyebrow { font-size:8.4pt; letter-spacing:.8px; font-weight:bold; color:#000; }
+h1 { font-size:18pt; line-height:1.5; margin:4mm 0 2mm; }
+.subtitle { font-size:11pt; color:#000; margin:0 0 3mm; }
+.author { font-size:8.4pt; color:#000; border-bottom:1px solid #000; padding-bottom:3mm; }
+h2 { margin:5mm 0 2mm; font-size:12pt; color:#000; }
 p { margin:0 0 2.5mm; }
-.banner { background:#eaf3ef; border-left:3px solid #237b70; padding:3mm 4mm; margin:4mm 0; }
+.banner { padding:2mm 0; margin:3mm 0; }
 .metrics { display:flex; gap:3mm; margin:3mm 0; }
-.metric { flex:1; padding:3mm; background:#f1f5f5; border-top:2px solid #4a8580; }
-.number { font-size:22pt; font-weight:bold; line-height:1.3; color:#175e5b; }
+.metric { flex:1; padding:2mm; border-top:1px solid #000; }
+.number { font-size:18pt; font-weight:bold; line-height:1.3; color:#000; }
 .caption { font-size:8.4pt; line-height:1.65; margin-top:2mm; }
 table { border-collapse:collapse; width:100%; font-size:9.2pt; margin:2mm 0; }
-td,th { text-align:left; border-bottom:1px solid #d8e2e1; padding:2mm 2mm; vertical-align:top; }
-th { background:#f0f5f4; font-weight:bold; }
-.small { font-size:8.4pt; line-height:1.65; color:#4b6268; }
-pre { background:#f0f4f5; border:1px solid #dbe5e5; padding:3mm; font:8.1pt/1.45 Consolas,monospace; margin:2mm 0 3mm; white-space:pre-wrap; }
-.footer { position:absolute; bottom:9mm; left:16mm; right:16mm; border-top:1px solid #ccd9d8; padding-top:2mm; display:flex; justify-content:space-between; font-size:7.8pt; color:#61777a; }
-a { color:#236d75; text-decoration:none; overflow-wrap:anywhere; }
+td,th { text-align:left; border-bottom:1px solid #000; padding:2mm 2mm; vertical-align:top; }
+th { font-weight:bold; }
+.small { font-size:8.4pt; line-height:1.65; color:#000; }
+pre { border:1px solid #000; padding:3mm; font:8.1pt/1.45 Consolas,monospace; margin:2mm 0 3mm; white-space:pre-wrap; }
+.footer { position:absolute; bottom:9mm; left:16mm; right:16mm; border-top:1px solid #000; padding-top:2mm; display:flex; justify-content:space-between; font-size:7.8pt; color:#000; }
+a { color:#000; text-decoration:none; overflow-wrap:anywhere; }
 .source { font-size:7.3pt; line-height:1.55; }
 .page:nth-of-type(2) h2 { margin-top:3mm; }
 .page:nth-of-type(2) .small { font-size:8.2pt; line-height:1.5; }
@@ -55,28 +55,29 @@ a { color:#236d75; text-decoration:none; overflow-wrap:anywhere; }
 </style>
 <body><section class="page">
 <div class="eyebrow">DSI463 · ASSIGNMENT 4 · POLICY BRIEF</div>
-<h1>ค้นหาให้พบ<br>ช่วยให้เข้าถึงสิทธิ</h1>
-<p class="subtitle">ตรวจสอบช่องว่างบันทึกเบี้ยยังชีพผู้สูงอายุ<br>ข้อเสนอนำร่องจังหวัดแม่ฮ่องสอน</p>
-<div class="author">Anupat Suttilert · 6624650526<br>Nongnapat Sunontanum · 6624650302 &nbsp;|&nbsp; 28 ตุลาคม 2026</div>
-<div class="banner"><b>ข้อเสนอหลัก:</b> ใช้ข้อมูลคัดรายชื่อเพื่อยืนยันสิทธิและช่วยดำเนินการเชิงรุก<br>การไม่พบ WFEL9 ยังไม่ยืนยันว่ามีสิทธิหรือไม่ได้รับเงินจริง</div>
+<h1>ข้อเสนอนโยบายตรวจสอบและเชื่อมต่อสิทธิ<br>เบี้ยยังชีพผู้สูงอายุ จังหวัดแม่ฮ่องสอน</h1>
+<p class="subtitle">เสนอต่อสำนักงานพัฒนาสังคมและความมั่นคงของมนุษย์จังหวัดแม่ฮ่องสอน</p>
+<div class="author">Anupat Suttilert · 6624650526<br>Nongnapat Sunontanum · 6624650302 &nbsp;|&nbsp; 29 ตุลาคม 2026</div>
+<div class="banner"><b>สาระสำคัญ:</b> ตรวจสอบรายชื่อ 43 คนใน 40 ครัวเรือน ประสานการเข้าถึงสิทธิ และติดตามผลภายใน 6 เดือน โดยใช้งบดำเนินการนำร่อง 12,900 บาทตามสมมติฐานที่ระบุ</div>
 
 <h2>01 &nbsp; นโยบาย: ตรวจสอบ–ส่งต่อ–ติดตาม</h2>
 <p>ให้สำนักงาน พมจ.แม่ฮ่องสอนร่วมกับองค์กรปกครองส่วนท้องถิ่นและ อพม. ตรวจสอบผู้สูงอายุที่ยังมีชีวิต ไม่ถูกลบออกจากระบบ และไม่พบบันทึก WFEL9 โดยเริ่มจากรายชื่อใน query หน้า 2 จัดลำดับเยี่ยมบ้านก่อนสำหรับผู้ไม่มีเลขที่บ้านหรืออยู่คนเดียว</p>
-<p>ยืนยันข้อมูลการรับเงินและเงื่อนไขสิทธิกับหน่วยงานรับผิดชอบ จากนั้นช่วยลงทะเบียนหรือประสานส่งต่อตามแนวทาง <b>TR47 เบี้ยยังชีพผู้สูงอายุ</b> ที่ปรากฏในข้อมูล หากไม่เข้าเงื่อนไขให้เชื่อมบริการช่วยเหลืออื่นและบันทึกเหตุผล แทนการถือว่าทุกคนมีสิทธิโดยอัตโนมัติ</p>
+<p>ยืนยันข้อมูลการรับเงินและเงื่อนไขสิทธิกับหน่วยงานรับผิดชอบ จากนั้นช่วยลงทะเบียนหรือส่งต่อตามแนวทาง <b>TR47 เบี้ยยังชีพผู้สูงอายุ</b> สำหรับผู้เข้าเงื่อนไข ส่วนผู้ไม่เข้าเงื่อนไขให้ประสานบริการช่วยเหลือที่เหมาะสมและบันทึกผลตรวจสอบ</p>
 
 <h2>02 &nbsp; หลักฐานที่ใช้ตัดสินใจ</h2>
 <div class="metrics">
-<div class="metric"><div class="number">243 คน</div><div class="caption">ไม่พบ WFEL9 จากผู้สูงอายุ<br>1,461 คน หรือ <b>16.63%</b><br><span class="small">MSO สังเคราะห์ · Q1</span></div></div>
-<div class="metric"><div class="number">31.85%</div><div class="caption">แม่ฮ่องสอนไม่พบเบี้ย<br>43 จาก 135 คน สูงสุดใน 7 จังหวัด<br><span class="small">MSO สังเคราะห์ · Q1/Q6</span></div></div>
+<div class="metric"><div class="number">243 คน</div><div class="caption">ไม่พบบันทึก WFEL9<br>จากผู้สูงอายุ 1,461 คน (<b>16.63%</b>)<br><span class="small">ผลวิเคราะห์ MSO · Q1</span></div></div>
+<div class="metric"><div class="number">31.85%</div><div class="caption">แม่ฮ่องสอนไม่พบบันทึก WFEL9<br>43 จาก 135 คน สูงสุดใน 7 จังหวัด<br><span class="small">ผลวิเคราะห์ MSO · Q1/Q6</span></div></div>
 <div class="metric"><div class="number">40,031</div><div class="caption">ผู้สูงอายุจากทะเบียนจริง<br>แม่ฮ่องสอน ปี 2024<br><span class="small">NSO/DOPA · Q6</span></div></div>
 </div>
-<p class="small">ปีล่าสุดในไฟล์คือ 2025: แม่ฮ่องสอน 41,623 คน (+3.98%) ข้อมูลภายนอกช่วยแสดงขนาดประชากรจริงที่ฐานสังเคราะห์บอกไม่ได้ จึงต้องสำรวจภาระงานจริงก่อนขยายโครงการ ห้ามนำอัตราสังเคราะห์ไปประมาณจำนวนตกหล่นของจังหวัด</p>
-<p>ทั่วชุดข้อมูล ผู้ไม่มีเลขที่บ้านไม่พบเบี้ย 37/81 คน (45.68%) เทียบกับผู้มีเลขที่ 205/1,378 คน (14.88%) และ 149/243 คนไม่พบทั้ง WFEL9 และ PBAC8 จึงควรค้นเคสจากข้อเท็จจริงเพิ่มเติมจากรายชื่อปัญหาเดิม</p>
-<p class="small">Q2 ใช้ฐาน 1,459 คน หลังตัดผู้เชื่อมกับครัวเรือน removed 2 คน ต่างจากฐาน Q1 ที่ 1,461 คน ความต่างเป็นความสัมพันธ์ ไม่ใช่หลักฐานสาเหตุ</p>
+<p>ผู้ไม่มีเลขที่บ้านไม่พบบันทึก WFEL9 จำนวน 37/81 คน (45.68%) เทียบกับผู้มีเลขที่ 205/1,378 คน (14.88%) และ 149/243 คนไม่มี PBAC8 บันทึกไว้ด้วย ส่วน 94 คนที่มี PBAC8 มี 35 คนยังไม่มีแผน (37.23%) จึงต้องดำเนินการทั้งค้นหาเคสและเปิดแผนช่วยเหลือ</p>
+<p class="small">นิยามกลุ่มเป้าหมาย: สมาชิกมีชีวิต อายุ 60 ปีขึ้นไปตามวันอ้างอิง 30 มิถุนายน 2024 และไม่มีรหัส WFEL9 ใน welf_eldery; ตารางเปรียบเทียบที่อยู่อาศัยใช้ฐาน 1,459 คน หลังตัดผู้เชื่อมกับครัวเรือนที่ถูกลบออก 2 คน</p>
 
-<h2>03 &nbsp; ต้นทุนและแรงงานนำร่อง</h2>
-<p>query ได้ <b>43 คน ใน 40 ครัวเรือน</b> สมมติตรวจสอบคนละ 1 ชั่วโมง ใช้ 43 ชั่วโมง และค่าเดินทาง/ติดต่อ 300 บาทต่อคน รวม <b>12,900 บาท</b> เป็นประมาณการสมมติ ไม่ใช่อัตราราชการ ไม่รวมงบจ่ายเบี้ย การเยี่ยมร่วมครัวเรือนอาจลดเวลาได้</p>
-<div class="footer"><span>ข้อมูล MSO สังเคราะห์ · ใช้เพื่อการศึกษา</span><span>1 / 2</span></div>
+<h2>03 &nbsp; ขอบเขตและต้นทุนดำเนินการ</h2>
+<p>ข้อมูล NSO/DOPA ปี 2025 ระบุผู้สูงอายุแม่ฮ่องสอน 41,623 คน เพิ่ม 1,592 คน (+3.98%) จากปี 2024 หากตรวจทุกรายโดยใช้เวลา 1 ชั่วโมงและค่าเดินทาง/ติดต่อ 300 บาทต่อคน จะใช้ <b>41,623 ชั่วโมง และ 12,486,900 บาท</b> จึงกำหนดข้อเสนอเป็นโครงการนำร่องตามรายชื่อ 43 คน ก่อนวางแผนขยายจากทะเบียนจริง</p>
+<p>การนำร่อง 43 คน ใน 40 ครัวเรือน ใช้ <b>43 ชั่วโมง และ 12,900 บาท</b> ภายใต้สมมติฐานเดียวกัน ตัวเลขนี้เป็นงบตรวจสอบและประสานงาน ไม่รวมงบจ่ายเบี้ยหรือค่าใช้จ่ายบริหารเพิ่มเติม การตรวจครบทะเบียนเป็นสถานการณ์เทียบขนาดงาน ไม่ใช่จำนวนผู้ตกหล่น</p>
+
+<div class="footer"><span>DSI463 · ข้อเสนอนโยบาย</span><span>1 / 2</span></div>
 </section>
 
 <section class="page">
@@ -84,24 +85,24 @@ a { color:#236d75; text-decoration:none; overflow-wrap:anywhere; }
 <h2 style="margin-top:3mm">04 &nbsp; คัดรายชื่อด้วย MongoDB query เดียว</h2>
 <p>ใช้กับ <code>mso_member</code> เพื่อสร้างคิวตรวจสอบในจังหวัด 58 ทั้งสองอำเภอ; เจ้าหน้าที่ตรวจเอกสารและสิทธิก่อนดำเนินการ ส่วนการจัดลำดับเยี่ยมบ้านใช้ผล household join ใน Q2</p>
 <pre>''' + escape(query) + '''</pre>
-<p class="small">query ตรงกับ notebook และ Bonus A2 ใช้อายุแบบขอบเขตปีตามสูตรโจทย์ ไม่ใช่อายุครบวันเกิด เมื่อใช้งานจริงต้องเปลี่ยนเป็นวันตรวจสอบปัจจุบันและตรวจวันเกิดจริง; sensitivity ทั้งฐานให้ 223/1,440 คน เมื่อใช้อายุครบวันเกิด ณ 30 มิ.ย. 2024 เทียบกับ 243/1,461 ตามสูตรโจทย์</p>
+<p class="small">เกณฑ์อายุในผลวิเคราะห์ใช้การนับขอบเขตปี ณ 30 มิถุนายน 2024 ตามสูตรโจทย์ สำหรับการปฏิบัติงานให้ตรวจอายุครบวันเกิดและปรับวันอ้างอิงเป็นวันที่ตรวจสอบสิทธิ</p>
 
 <h2>05 &nbsp; วัดผลใน 60 วันและอีก 6 เดือน</h2>
 <table><tr><th style="width:30%">เป้าหมายที่เสนอ</th><th>วิธีตรวจสอบ</th></tr>
 <tr><td>ยืนยันข้อมูล ≥90%<br>ภายใน 60 วัน</td><td>เก็บผลตรวจสิทธิ เหตุไม่ผ่าน วันที่ยืนยัน และหน่วยงานรับผิดชอบเพิ่ม แยก “ไม่รับ” จาก “ไม่บันทึก”</td></tr>
 <tr><td>ลดช่องว่าง ≥50%<br>ในกลุ่มยืนยันว่ามีสิทธิ<br>ภายใน 6 เดือน</td><td>ใช้ baseline IDs เดิม ตรวจ WFEL9 และผลยืนยันการรับจริง พร้อมรายงานผู้ตาย/removed หรือหลุดการติดตามแยกต่างหาก</td></tr>
 <tr><td>ติดตามการดำเนินการ</td><td>ดู prob_summary.prob_accessibility.status,<br>plans.sol_code และ activities.act_progression<br>การปิดเคสไม่ใช่หลักฐานว่าจ่ายเงินจริงเสมอ</td></tr></table>
-<p class="small">query ที่รันซ้ำ: โหลด PILOT_IDS จาก pilot_baseline_ids.json แล้วใช้</p>
+<p class="small">query ที่รันซ้ำ: ใช้ PILOT_IDS ซึ่งเป็นรายชื่อฐานเริ่มต้นที่สร้างไว้ใน notebook</p>
 <pre>db.mso_member.count_documents({"_id": {"$in": PILOT_IDS},
   "vital_status": 1, "status": {"$ne": "removed"},
   "welf_eldery.code": {"$ne": "WFEL9"}})</pre>
-<p class="small">ค่านี้วัดคนใน cohort เดิมที่ยังไม่มีบันทึก ไม่ได้วัดความสำเร็จการได้รับเงินจริงเพียงลำพัง และยังไม่มีข้อมูลอนาคตในงานนี้</p>
+<p class="small">รายงานจำนวนที่ยังขาดบันทึกในกลุ่มเดิมควบคู่ผลยืนยันการรับเงิน และแยกการเปลี่ยนแปลงสถานะสมาชิกออกจากผลของโครงการ</p>
 
 <h2>06 &nbsp; ข้อจำกัด</h2>
-<p class="small">MSO เป็นข้อมูลสังเคราะห์และไม่ใช่ตัวแทนประชากรไทย โค้ดที่หายอาจเป็นการบันทึกไม่ครบ PBAC8 ครอบคลุมเบี้ยพิการด้วย ตัวแปรสัญชาติและเงื่อนไขสิทธิต้องตรวจรายกรณี รายได้บางช่องขาดและยอดรวมอาจไม่ตรงรายละเอียด ภาระหนี้เป็นยอดชำระรายเดือน ข้อมูลทะเบียนเป็นรายปีต่างจาก snapshot กลางปี และข้อความติดตามสั้นหรือว่างจึงยังอธิบายเหตุลึกไม่ได้</p>
+<p class="small">MSO เป็นข้อมูลสังเคราะห์ตามโจทย์ ผลวิเคราะห์จึงไม่ใช่ค่าประมาณประชากรไทย การไม่มี WFEL9 หมายถึงไม่มีบันทึกรหัส ไม่ใช่ผลยืนยันการรับเงินจริง โดย 204 คนไม่มีฟิลด์ welf_eldery และ 39 คนมีเฉพาะสวัสดิการสูงอายุอื่น PBAC8 ครอบคลุมเบี้ยพิการด้วย ต้องตรวจเงื่อนไขสิทธิรายกรณี ข้อมูลทะเบียนเป็นรายปีต่างจาก snapshot กลางปี และบันทึกติดตามที่ว่างจำกัดการอธิบายสาเหตุ</p>
 
 <h2 style="margin-top:3mm">แหล่งข้อมูลและการตรวจซ้ำ</h2>
-<div class="source">MSO-Logbook synthetic handout, snapshot 30 มิ.ย. 2024; notebook A4_6624650526: Q1, Q2, Q5, Q6 และ targeting<br>
+<div class="source">MSO-Logbook synthetic handout, snapshot 30 มิ.ย. 2024; notebook A4_6624650526: Q1, Q2, Q5, Q6/Q6b และ targeting<br>
 NSO, ประชากรอายุ 60 ปีขึ้นไป จากการทะเบียน; ต้นทาง DOPA; ปี 2024 และ 2025; เข้าถึง 28 ต.ค. 2026<br>
 <a href="https://gdcatalog.go.th/dataset/gdpublish-605">Catalog: https://gdcatalog.go.th/dataset/gdpublish-605</a><br>
 <a href="https://catalogapi.nso.go.th/api/index?table=OS_0405_01_0008_01&format=json">API: https://catalogapi.nso.go.th/api/index?table=OS_0405_01_0008_01&amp;format=json</a><br>

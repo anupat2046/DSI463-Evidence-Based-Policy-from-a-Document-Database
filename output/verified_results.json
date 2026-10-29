@@ -1,6 +1,16 @@
 {
   "name": "Anupat Suttilert",
   "student_id": "6624650526",
+  "team_members": [
+    {
+      "name": "Anupat Suttilert",
+      "student_id": "6624650526"
+    },
+    {
+      "name": "Nongnapat Sunontanum",
+      "student_id": "6624650302"
+    }
+  ],
   "snapshot": "2024-06-30",
   "runtime": {
     "mongodb_version": "7.0.45",
@@ -148,6 +158,124 @@
       "registered_growth_pct": 2.958128326137162
     }
   ],
+  "external_population_context": [
+    {
+      "province_code": "58",
+      "province": "แม่ฮ่องสอน",
+      "synthetic_gap": 43,
+      "synthetic_gap_pct": 31.851851851851855,
+      "registered_2024": 40031,
+      "registered_2025": 41623,
+      "latest_year": 2025,
+      "registered_change": 1592,
+      "universal_verification_hours": 41623,
+      "universal_verification_baht": 12486900,
+      "registered_growth_pct": 3.976917888636307,
+      "population_rank_within_7": 7,
+      "synthetic_gap_rank_within_7": 1
+    },
+    {
+      "province_code": "50",
+      "province": "เชียงใหม่",
+      "synthetic_gap": 43,
+      "synthetic_gap_pct": 21.608040201005025,
+      "registered_2024": 406871,
+      "registered_2025": 419480,
+      "latest_year": 2025,
+      "registered_change": 12609,
+      "universal_verification_hours": 419480,
+      "universal_verification_baht": 125844000,
+      "registered_growth_pct": 3.0990166416382587,
+      "population_rank_within_7": 3,
+      "synthetic_gap_rank_within_7": 2
+    },
+    {
+      "province_code": "30",
+      "province": "นครราชสีมา",
+      "synthetic_gap": 39,
+      "synthetic_gap_pct": 17.410714285714285,
+      "registered_2024": 551419,
+      "registered_2025": 574051,
+      "latest_year": 2025,
+      "registered_change": 22632,
+      "universal_verification_hours": 574051,
+      "universal_verification_baht": 172215300,
+      "registered_growth_pct": 4.104319945449831,
+      "population_rank_within_7": 2,
+      "synthetic_gap_rank_within_7": 3
+    },
+    {
+      "province_code": "40",
+      "province": "ขอนแก่น",
+      "synthetic_gap": 34,
+      "synthetic_gap_pct": 14.529914529914532,
+      "registered_2024": 378450,
+      "registered_2025": 394314,
+      "latest_year": 2025,
+      "registered_change": 15864,
+      "universal_verification_hours": 394314,
+      "universal_verification_baht": 118294200,
+      "registered_growth_pct": 4.191835116924296,
+      "population_rank_within_7": 4,
+      "synthetic_gap_rank_within_7": 4
+    },
+    {
+      "province_code": "14",
+      "province": "พระนครศรีอยุธยา",
+      "synthetic_gap": 26,
+      "synthetic_gap_pct": 13.903743315508022,
+      "registered_2024": 179184,
+      "registered_2025": 186511,
+      "latest_year": 2025,
+      "registered_change": 7327,
+      "universal_verification_hours": 186511,
+      "universal_verification_baht": 55953300,
+      "registered_growth_pct": 4.089092776140727,
+      "population_rank_within_7": 5,
+      "synthetic_gap_rank_within_7": 5
+    },
+    {
+      "province_code": "10",
+      "province": "กรุงเทพมหานคร",
+      "synthetic_gap": 39,
+      "synthetic_gap_pct": 13.636363636363635,
+      "registered_2024": 1264604,
+      "registered_2025": 1305293,
+      "latest_year": 2025,
+      "registered_change": 40689,
+      "universal_verification_hours": 1305293,
+      "universal_verification_baht": 391587900,
+      "registered_growth_pct": 3.217528965589228,
+      "population_rank_within_7": 1,
+      "synthetic_gap_rank_within_7": 6
+    },
+    {
+      "province_code": "94",
+      "province": "ปัตตานี",
+      "synthetic_gap": 19,
+      "synthetic_gap_pct": 9.693877551020408,
+      "registered_2024": 99590,
+      "registered_2025": 102536,
+      "latest_year": 2025,
+      "registered_change": 2946,
+      "universal_verification_hours": 102536,
+      "universal_verification_baht": 30760800,
+      "registered_growth_pct": 2.958128326137162,
+      "population_rank_within_7": 6,
+      "synthetic_gap_rank_within_7": 7
+    }
+  ],
+  "wfel9_audit": [
+    {
+      "_id": "missing_field",
+      "people": 204
+    },
+    {
+      "_id": "other_codes_only",
+      "people": 39
+    }
+  ],
+  "wfel9_raw_id_match": true,
   "recording_gap": [
     {
       "_id": {
@@ -197,16 +325,6 @@
       "all_stages_including_facet": 9,
       "lookup_stages": 0,
       "exact_match": true
-    }
-  ],
-  "team_members": [
-    {
-      "name": "Anupat Suttilert",
-      "student_id": "6624650526"
-    },
-    {
-      "name": "Nongnapat Sunontanum",
-      "student_id": "6624650302"
     }
   ]
 }

@@ -29,3 +29,5 @@
 28,mso_member,prob_summary.prob_accessibility.plans.status,Q4b,Plan status
 29,mso_member,prob_summary.prob_accessibility.plans.activities.act_progression,Q4b,Recorded follow-up outcome
 30,mso_member,prob_accessibility.code,Q5,Problem recognition vs case management
+31,ext_province_elderly,elderly_2024,"Q6, Q6b",Real baseline population size; denominator for registered population growth only
+32,ext_province_elderly,elderly_latest,"Q6, Q6b","Real latest population size and increase; scale context, not synthetic coverage"
